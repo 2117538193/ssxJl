@@ -8,7 +8,7 @@
 <body>
     <select  id="shengFen">
         <option>请选择省份</option>
-        <option>江西省</option>
+    <option>江西省</option>
         <option>广东省</option>
     </select>
     <select  id="shiJi">
@@ -22,10 +22,15 @@
     var sFen,
         sJi,
         xJi,
-        shxArray;
+        shxArray,
+        xjHTML,
+        sjHTML;
     sFen = document.querySelector('#shengFen');
     sJi = document.querySelector('#shiJi');
     xJi = document.querySelector('#xianJi');
+    sjHTML = sJi.innerHTML;
+    xjHTML = xJi.innerHTML;
+    console.log(sjHTML,xjHTML);
     shxArray = [{
         '江西省': [{
             '九江市' : ['都昌县','星子县','鄱阳县'],
@@ -38,7 +43,7 @@
             '汕头市' : ['龙湖区'],
         },'广东省']
         }];
-    // console.log(shxArray);
+
 
     class selectO{
         constructor(){
@@ -67,6 +72,8 @@
             for(let y in shxArray[ii]){
                 if(shxArray[ii][y][1] === val){
                     i = 0;
+                    sJi.innerHTML = sjHTML;
+                    xJi.innerHTML = xjHTML;
                     for(let k in shxArray[ii][y][0]){
                         shiJiArray.push(k);
                         i++;
@@ -76,6 +83,7 @@
                 for(let kk in shxArray[ii][y][0]){
                     if(kk === val){
                         i = 0;
+                        xJi.innerHTML = xjHTML;
                         for(let kkk = 0;kkk<shxArray[ii][y][0][kk].length;kkk++){
                             i++;
                             xianJiArray.push(shxArray[ii][y][0][kk][kkk]);
@@ -87,17 +95,18 @@
             }
         }
         }
-        del(){
-            
-        }
     }
 
-    sFen.addEventListener('click',function(){selectNew.find(sJi)}
-,false);
-sJi.addEventListener('click',function(){
+    sFen.addEventListener('change',function(){
+        selectNew.find(sJi);
+        }
+    ,false);
+    sJi.addEventListener('change',function(){
     selectNew.find(xJi);
-},false)
- var selectNew = new selectO();
-//  selectNew.add(shiJi,7);
+    },false)
+ var selectNew;
+     selectNew = new selectO();
+
+
 </script>
 </html>
